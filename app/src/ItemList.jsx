@@ -10,7 +10,7 @@ export default function ItemList() {
         if (prev.status && !next.status)
             return 1;
         if (prev.status && next.status)
-            return new Date(prev.completedDate) - new Date(next.completedDate);
+            return new Date(next.completedDate) - new Date(prev.completedDate);
         else
             return 1;
     }));
@@ -18,6 +18,9 @@ export default function ItemList() {
     const handleClick = (e) => {
         dispatch(changeStatus(e.target.value));
     };
+    const reverseDate = (date)=>{
+        return date.split('-').reverse().join('.');
+    }
     let deleteClassName = false;
     if (tasks.length > 0)
         return (
@@ -36,10 +39,10 @@ export default function ItemList() {
                                 if (e.categoryId !== "" && +e.categoryId === c.id) return c.name ?? null;
                             })}</span>)}
                         {(e.finalDate !== "" && !isCompletedDate) ?
-                            <span className="category-date">до: {e.finalDate.split('-').reverse().join('.')}</span> :
+                            <span className="category-date">до: {reverseDate(e.finalDate)}</span> :
                             (isCompletedDate) ?
                                 <span
-                                    className="category-date">завершено: {e.completedDate.split('-').reverse().join('.')}</span> : null
+                                    className="category-date">завершено: {reverseDate(e.completedDate.split(' ')[0])}</span> : null
                         }
                     </div>
                 })}

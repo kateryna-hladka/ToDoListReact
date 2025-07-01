@@ -1,5 +1,5 @@
 import {createSlice, nanoid} from '@reduxjs/toolkit'
-import {dateNow} from "../../DateNow.js";
+import {dateTimeNow} from "../../DateNow.js";
 
 const ItemSlice = createSlice({
     name: 'item',
@@ -18,7 +18,7 @@ const ItemSlice = createSlice({
             state.items.forEach((e, index) => {
                 if (e.id === action.payload) {
                     state.items[index].status = !e.status;
-                    state.items[index].completedDate = (e.status) ? dateNow : "";
+                    state.items[index].completedDate = (e.status) ? dateTimeNow() : "";
                     return;
                 }
             })

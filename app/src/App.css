@@ -1,5 +1,10 @@
 @import "color.css";
 
+*{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 html {
   font-size: 14px;
 }
@@ -20,7 +25,7 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  display: block;
 }
 
 .create-item {
@@ -35,7 +40,6 @@ body {
 
 #root{
   margin:auto;
-  margin-top: 20px;
 }
 
 h2{
@@ -80,8 +84,9 @@ h2{
 }
 
 .task {
-  width: 90%;
-  margin-left: 5%;
+  width: 42%;
+  margin-left: 29%;
+  margin-bottom: 85px;
 }
 
 .category-name, .category-date {
@@ -135,7 +140,8 @@ h2{
   border: none;
   background: none;
   color: var(--dark-grey);
-  font-weight: bold
+  font-weight: bold;
+  text-shadow: 1px 0.2px 0;
 }
 
 .check button:hover{
