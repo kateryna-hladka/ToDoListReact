@@ -1,0 +1,151 @@
+@import "color.css";
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.create-item {
+  display: flex;
+  justify-content: center;
+  margin-top: 4vh;
+}
+
+#root{
+  margin: auto;
+  /*position: relative;
+  top: -250px;*/
+}
+
+h2{
+  text-align: center;
+  color: var(--dark-blue);
+  margin: 0;
+}
+
+.create-item select {
+  width: 195px;
+}
+
+.create-item input[name="finalDate"] {
+  width: 130px;
+}
+
+.create-item input[name="name"]{
+  width: 324px;
+}
+
+.item {
+  border-top: 1px solid var(--light-grey);
+  padding: 4px;
+  position: relative;
+}
+
+.item:first-child{
+  margin-top: 20px;
+}
+
+.create-item button.btn, .create-item button.btn:hover {
+  color: var(--white);
+}
+
+.create-item button.btn {
+  background: var(--dark-blue);
+}
+
+.create-item button.btn:hover{
+  background: var(--middle-blue);
+}
+
+.task {
+  width: 90%;
+  margin-left: 5%;
+  background: var(--light-violet);
+}
+
+.category-name, .category-date {
+  position: absolute;
+  right: 0;
+}
+
+.category-name {
+  top: 0;
+  font-size: 0.7rem;
+  border-radius: 10px;
+  background: var(--violet);
+  padding: 2px;
+}
+
+.category-date {
+  font-size: 0.8rem;
+  display: inline-block;
+  bottom: 0;
+  color: var(--dark-grey);
+}
+
+.error {
+  color: var(--red);
+  font-size: 0.9rem;
+}
+
+.has-error {
+  border: 1px solid var(--red)
+}
+
+.done{
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.check{
+  display: flex;
+  align-items: center;
+}
+
+.check span{
+  margin-left: -5px;
+}
+
+.check form{
+  margin-right: 10px;
+}
+
+.check button{
+  border: none;
+  background: none;
+  color: var(--dark-grey);
+  font-weight: bold
+}
+
+.check button:hover{
+  color: var(--dark-blue)
+}
+
+.choose-storage > div.dropdown {
+  margin-left: 69.5%;
+  border: 1px solid var(--light-grey);
+  width: 11%;
+  border-radius: .25rem;
+}
+
+.dropdown> button.btn:focus{
+  box-shadow: none;
+}

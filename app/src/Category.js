@@ -1,0 +1,1 @@
+export const Category = [{id: 1, name: "Покупки"}, {id: 2, name: "Робота"}];
