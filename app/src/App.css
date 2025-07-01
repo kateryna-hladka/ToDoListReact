@@ -29,10 +29,13 @@ body {
   margin-top: 4vh;
 }
 
+.container{
+  margin-bottom: 0;
+}
+
 #root{
-  margin: auto;
-  /*position: relative;
-  top: -250px;*/
+  margin:auto;
+  margin-top: 20px;
 }
 
 h2{
@@ -57,9 +60,10 @@ h2{
   border-top: 1px solid var(--light-grey);
   padding: 4px;
   position: relative;
+  background: var(--light-violet);
 }
 
-.item:first-child{
+.item:first-child, .completed {
   margin-top: 20px;
 }
 
@@ -78,7 +82,6 @@ h2{
 .task {
   width: 90%;
   margin-left: 5%;
-  background: var(--light-violet);
 }
 
 .category-name, .category-date {

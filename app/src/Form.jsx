@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Category} from "./Category.js";
 import {dateNow} from "./DateNow.js";
 import {useDispatch} from "react-redux";
-import itemSlice, {add} from "./redux/slices/ItemSlice.js";
+import {add} from "./redux/slices/ItemSlice.js";
 
 export default function Form() {
     const dispatch = useDispatch();
