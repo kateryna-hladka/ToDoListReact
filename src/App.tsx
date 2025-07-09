@@ -1,6 +1,7 @@
 import './App.css'
-import Form from "./Form.jsx";
-import ItemList from "./ItemList.jsx";
+import Form from "./Form";
+import ItemList from "./ItemList";
+
 function App() {
 
     return (
@@ -12,4 +13,4 @@ function App() {
     )
 }
 
-export default App
+export default App;

@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {dateNow} from "./DateNow.js";
+import {useState} from 'react';
+import {dateNow} from "./DateNow";
 import {useDispatch, useSelector} from "react-redux";
-import {add} from "./redux/slices/ItemSlice.js";
+import {RootState} from "./redux/store";
 
 export default function Form() {
     const dispatch = useDispatch();
@@ -10,29 +10,29 @@ export default function Form() {
         categoryId: "",
         finalDate: ""
     });
-    const handleChange = (e) => {
+    const handleChange = (e): void => {
         const {name, value} = e.target;
         setFormData((prev) => ({
             ...prev,
             [name]: value
         }));
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = (e): void => {
         e.preventDefault();
         if ((formData.name.trim().length > 0 && formData.name.trim().length <= 5000) &&
             (formData.categoryId === "" || +formData.categoryId > 0) &&
             (formData.finalDate === "" || formData.finalDate > dateNow)) {
-            dispatch(add(formData));
+            dispatch({type: 'ADD', payload: (formData)});
             setFormData({name: "", categoryId: "", finalDate: ""});
         }
     };
 
-    const categories = useSelector((state) => [...state.category.categories]);
+    const categories = useSelector((state: RootState) => [...state.category]);
 
     return (
         <form className="create-item" onSubmit={handleSubmit}>
             <input type="text" placeholder="Що потрібно виконати?" className="form-control"
-                   required="required" name="name" value={formData.name} onChange={handleChange}/>
+                   required name="name" value={formData.name} onChange={handleChange}/>
             <select className="form-select" name="categoryId" value={formData.categoryId} onChange={handleChange}>
                 <option value="" disabled>Оберіть категорію</option>
                 {categories.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}

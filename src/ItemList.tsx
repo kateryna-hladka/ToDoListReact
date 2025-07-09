@@ -1,31 +1,32 @@
-import {useSelector} from 'react-redux';
-import {useDispatch} from "react-redux";
-import {changeStatus} from "./redux/slices/ItemSlice.js";
+import {useSelector, useDispatch} from 'react-redux';
+import {RootState} from "./redux/store";
+import Item from "./redux/Item";
 
 export default function ItemList() {
-    const tasks = useSelector((state) => [...state.item.items].sort((prev, next) => {
+    const tasks = useSelector((state: RootState) => [...state.item].sort((prev, next) => {
         if (!prev.status && next.status)
             return -1;
         if (prev.status && !next.status)
             return 1;
         if (prev.status && next.status)
-            return new Date(next.completedDate) - new Date(prev.completedDate);
+            return +new Date(next.completedDate) - +new Date(prev.completedDate);
         else
             return 1;
     }));
     const dispatch = useDispatch();
-    const handleClick = (e) => {
-        dispatch(changeStatus(e.target.value));
+    const handleClick = (e): void => {
+        dispatch({type: 'CHANGE_STATUS', payload: {id: (e.target.value)}});
     };
-    const reverseDate = (date)=>{
+    const reverseDate = (date?: string): string => {
+        if (!date) return "";
         return date.split('-').reverse().join('.');
     }
     let deleteClassName = false;
-    const categories = useSelector((state) => [...state.category.categories]);
+    const categories = useSelector((state: RootState) => [...state.category]);
     if (tasks.length > 0)
         return (
             <div className="task">
-                {tasks.map((e) => {
+                {tasks.map((e: Item) => {
                     let isCompletedDate = e.completedDate !== undefined && e.completedDate !== "";
                     return <div key={e.id} className={isCompletedDate && !deleteClassName ? "item completed" : "item"}>
                         {deleteClassName = isCompletedDate}
@@ -34,9 +35,9 @@ export default function ItemList() {
                                     onClick={handleClick}> {!isCompletedDate ? "✓" : "-"}</button>
                             <span className={isCompletedDate ? "done" : ""}>{e.name}</span>
                         </div>
-                        {(e.categoryId !== "") && (
+                        {(Number(e.categoryId) !== 0) && (
                             <span className="category-name">{categories.map((c) => {
-                                if (e.categoryId !== "" && +e.categoryId === c.id) return c.name ?? null;
+                                if (e.categoryId !== null && +e.categoryId === c.id) return c.name ?? null;
                             })}</span>)}
                         {(e.finalDate !== "" && !isCompletedDate) ?
                             <span className="category-date">до: {reverseDate(e.finalDate)}</span> :
