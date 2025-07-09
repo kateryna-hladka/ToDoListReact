@@ -1,4 +1,3 @@
-import {Category} from "./Category.js";
 import {useSelector} from 'react-redux';
 import {useDispatch} from "react-redux";
 import {changeStatus} from "./redux/slices/ItemSlice.js";
@@ -22,6 +21,7 @@ export default function ItemList() {
         return date.split('-').reverse().join('.');
     }
     let deleteClassName = false;
+    const categories = useSelector((state) => [...state.category.categories]);
     if (tasks.length > 0)
         return (
             <div className="task">
@@ -35,7 +35,7 @@ export default function ItemList() {
                             <span className={isCompletedDate ? "done" : ""}>{e.name}</span>
                         </div>
                         {(e.categoryId !== "") && (
-                            <span className="category-name">{Category.map((c) => {
+                            <span className="category-name">{categories.map((c) => {
                                 if (e.categoryId !== "" && +e.categoryId === c.id) return c.name ?? null;
                             })}</span>)}
                         {(e.finalDate !== "" && !isCompletedDate) ?

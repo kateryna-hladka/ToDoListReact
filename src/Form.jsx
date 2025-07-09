@@ -1,7 +1,6 @@
-import React, {useState} from 'react'
-import {Category} from "./Category.js";
+import React, {useState} from 'react';
 import {dateNow} from "./DateNow.js";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {add} from "./redux/slices/ItemSlice.js";
 
 export default function Form() {
@@ -28,13 +27,15 @@ export default function Form() {
         }
     };
 
+    const categories = useSelector((state) => [...state.category.categories]);
+
     return (
         <form className="create-item" onSubmit={handleSubmit}>
             <input type="text" placeholder="Що потрібно виконати?" className="form-control"
                    required="required" name="name" value={formData.name} onChange={handleChange}/>
             <select className="form-select" name="categoryId" value={formData.categoryId} onChange={handleChange}>
                 <option value="" disabled>Оберіть категорію</option>
-                {Category.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+                {categories.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
             </select>
             <input type="date" className="form-control" min={dateNow} name="finalDate" value={formData.finalDate}
                    onChange={handleChange}/>
