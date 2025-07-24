@@ -1,6 +1,5 @@
 import {ItemDate} from "./redux/Item";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "./redux/store";
+import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 
 export default function ItemSection({list, reverse}: { list: ItemDate[], reverse?: boolean }) {
@@ -14,7 +13,6 @@ export default function ItemSection({list, reverse}: { list: ItemDate[], reverse
         date = date.split('T')[0];
         return date.split('-').reverse().join('.');
     }
-    const categories = useSelector((state: RootState) => state.category.data);
     useEffect(() => {
         dispatch({type: "GET_ITEMS"});
     }, [dispatch]);

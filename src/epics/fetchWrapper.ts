@@ -5,7 +5,7 @@ export default function fetchWrapper(query: string, variables?: {}): Observable<
        return from(
             fetch(graphqlUrl, {
                 method: "POST",
-                headers: {"Content-Type": "application/json", 'GraphQL-Require-Preflight': 'true'},
+                headers: {"Content-Type": "application/json", 'GraphQL-Require-Preflight': 'true', 'storage': localStorage.getItem('storage')},
                 body: JSON.stringify({
                     query: query, variables: variables
                 }),

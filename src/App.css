@@ -60,6 +60,17 @@ h2 {
     width: 324px;
 }
 
+button.btn.show, button.btn:active, .btn{
+    border: none;
+}
+
+div.dropdown{
+    margin-left: 84.5%;
+    border: 1px solid var(--light-grey);
+    width: 19%;
+    border-radius: .25rem;
+}
+
 .item {
     border-top: 1px solid var(--light-grey);
     padding: 4px;

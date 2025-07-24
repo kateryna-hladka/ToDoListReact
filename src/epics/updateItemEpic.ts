@@ -20,11 +20,9 @@ const updateItemEpic = action$ => action$.pipe(
                 status: action.payload.status === "true",
             })
             .pipe(
-                map((response) => {
-                        console.log(response.data);
-                        return {type: "CHANGE_STATUS_SUCCESS", payload: {data: response.data.updateItem}}
-                    },
-                    /*{type: "GET_ITEMS"}*/
+                map((response) => (
+                        {type: "CHANGE_STATUS_SUCCESS", payload: {data: response.data.updateItem}}
+                    )
                 )
             )
     )

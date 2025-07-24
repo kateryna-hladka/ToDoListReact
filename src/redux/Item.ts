@@ -1,6 +1,3 @@
-import {nanoid} from '@reduxjs/toolkit'
-import {dateTimeNow} from "../DateNow";
-
 export type ItemDate = {
     id: string,
     name: string,
@@ -43,19 +40,6 @@ const Item = (state: Item = initialState, action): Item => {
                 completedItems: newCompleted,
                 notCompletedItems: newNotCompleted
             };
-        /*    return {...state, loading: false}*/
-
-        /*state.map((item: Item): Item => {
-                if (item.id === action.payload.id) {
-                    const newStatus: boolean = !item.status;
-                    return {
-                        ...item,
-                        status: newStatus,
-                        completedDate: newStatus ? dateTimeNow() : ""
-                    };
-                }
-                return item;
-            });*/
         default:
             return state;
     }
