@@ -4,6 +4,7 @@ import Category from "./Category";
 import {combineEpics, createEpicMiddleware} from 'redux-observable';
 import categoryEpic from "../epics/categoryEpic";
 import addItemEpic from "../epics/addItemEpic";
+import itemListEpic from "../epics/ItemListEpic";
 
 const epicMiddleware = createEpicMiddleware();
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
 });
 const rootEpic = combineEpics(
     categoryEpic,
-    addItemEpic
+    addItemEpic,
+    itemListEpic
 );
 const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
 epicMiddleware.run(rootEpic);

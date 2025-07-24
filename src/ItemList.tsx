@@ -1,9 +1,11 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from "./redux/store";
-import Item from "./redux/Item";
+import {ItemDate} from "./redux/Item";
+import {useEffect} from "react";
+import ItemSection from "./ItemSection";
 
 export default function ItemList() {
-    const tasks = useSelector((state: RootState) => state.item.data.sort((prev, next) => {
+    /*const tasks = useSelector((state: RootState) => state.item.data.sort((prev, next) => {
         if (!prev.status && next.status)
             return -1;
         if (prev.status && !next.status)
@@ -13,22 +15,32 @@ export default function ItemList() {
         else
             return 1;
     }));
-    console.log(tasks);
+    console.log(tasks);*/
     const dispatch = useDispatch();
-    const handleClick = (e): void => {
+    /*const handleClick = (e): void => {
         dispatch({type: 'CHANGE_STATUS', payload: {id: (e.target.value)}});
     };
     const reverseDate = (date?: string): string => {
         if (!date) return "";
         return date.split('-').reverse().join('.');
-    }
-    let deleteClassName = false;
-    const categories = useSelector((state: RootState) => state.category.data);
-    /*if (tasks.length > 0)
+    }*/
+/*    let deleteClassName = false;
+    const categories = useSelector((state: RootState) => state.category.data);*/
+    useEffect(() => {
+        dispatch({type: "GET_ITEMS"});
+    }, [dispatch]);
+    const completedItems = useSelector((state: RootState) => state.item.completedItems);
+    const notCompletedItems = useSelector((state: RootState) => state.item.notCompletedItems);
+    return (<>
+            <ItemSection list={notCompletedItems}/>
+            <ItemSection list={completedItems}/>
+        </>
+    );
+    /*if (notCompletedItems.length > 0)
         return (
             <div className="task">
-                {tasks.map((e: Item) => {
-                    let isCompletedDate = e.data.completedDate !== undefined && e.completedDate !== "";
+                {notCompletedItems.map((e: ItemDate) => {
+                    let isCompletedDate = e.completedDate !== undefined && e.completedDate !== "";
                     return <div key={e.id} className={isCompletedDate && !deleteClassName ? "item completed" : "item"}>
                         {deleteClassName = isCompletedDate}
                         <div className="check">
@@ -50,5 +62,5 @@ export default function ItemList() {
                 })}
             </div>
         );
-    else*/ return <></>
+    else return <></>*/
 }
