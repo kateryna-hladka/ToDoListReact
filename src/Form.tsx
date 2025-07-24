@@ -21,8 +21,8 @@ export default function Form() {
     const handleSubmit = (e): void => {
         e.preventDefault();
         if ((formData.name.trim().length > 0 && formData.name.trim().length <= 5000) &&
-            (formData.categoryId === "" || +formData.categoryId > 0) &&
-            (formData.finalDate === "" || formData.finalDate > dateNow)) {
+            (formData.categoryId === "" || +(formData.categoryId) > 0) &&
+            (formData.finalDate === "" || formData.finalDate >= dateNow)) {
             dispatch({type: 'ADD', payload: (formData)});
             setFormData({name: "", categoryId: "", finalDate: ""});
         }

@@ -3,7 +3,7 @@ type Category = {
     loading: boolean
 }
 const initialState: Category = {data: [], loading: false};
-const Category = (state: Category = initialState, action) => {
+const Category = (state: Category = initialState, action): Category => {
     switch (action.type) {
         case "GET":
             return {...state, loading: true}

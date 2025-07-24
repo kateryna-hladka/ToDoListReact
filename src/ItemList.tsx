@@ -3,7 +3,7 @@ import {RootState} from "./redux/store";
 import Item from "./redux/Item";
 
 export default function ItemList() {
-    const tasks = useSelector((state: RootState) => state.item.sort((prev, next) => {
+    const tasks = useSelector((state: RootState) => state.item.data.sort((prev, next) => {
         if (!prev.status && next.status)
             return -1;
         if (prev.status && !next.status)
@@ -13,6 +13,7 @@ export default function ItemList() {
         else
             return 1;
     }));
+    console.log(tasks);
     const dispatch = useDispatch();
     const handleClick = (e): void => {
         dispatch({type: 'CHANGE_STATUS', payload: {id: (e.target.value)}});
@@ -23,11 +24,11 @@ export default function ItemList() {
     }
     let deleteClassName = false;
     const categories = useSelector((state: RootState) => state.category.data);
-    if (tasks.length > 0)
+    /*if (tasks.length > 0)
         return (
             <div className="task">
                 {tasks.map((e: Item) => {
-                    let isCompletedDate = e.completedDate !== undefined && e.completedDate !== "";
+                    let isCompletedDate = e.data.completedDate !== undefined && e.completedDate !== "";
                     return <div key={e.id} className={isCompletedDate && !deleteClassName ? "item completed" : "item"}>
                         {deleteClassName = isCompletedDate}
                         <div className="check">
@@ -49,5 +50,5 @@ export default function ItemList() {
                 })}
             </div>
         );
-    else return <></>
+    else*/ return <></>
 }

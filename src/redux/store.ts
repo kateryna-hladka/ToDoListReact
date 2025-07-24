@@ -2,7 +2,8 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import Item from "./Item";
 import Category from "./Category";
 import {combineEpics, createEpicMiddleware} from 'redux-observable';
-import fetchCategoryEpic from "../epics/fetchCategoryEpic";
+import categoryEpic from "../epics/categoryEpic";
+import addItemEpic from "../epics/addItemEpic";
 
 const epicMiddleware = createEpicMiddleware();
 const rootReducer = combineReducers({
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
     category: Category
 });
 const rootEpic = combineEpics(
-    fetchCategoryEpic
+    categoryEpic,
+    addItemEpic
 );
 const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
 epicMiddleware.run(rootEpic);

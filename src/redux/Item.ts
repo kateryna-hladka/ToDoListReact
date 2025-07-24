@@ -2,27 +2,26 @@ import {nanoid} from '@reduxjs/toolkit'
 import {dateTimeNow} from "../DateNow";
 
 type Item = {
-    id: string,
-    name: string,
-    categoryId?: number,
-    finalDate?: string,
-    completedDate?: string,
-    status: boolean
+    data: {
+        id: string,
+        name: string,
+        categoryId?: number,
+        finalDate?: string,
+        completedDate?: string,
+        status: boolean
+    }[],
+    loading: boolean
 };
-const item: Item[] = [];
+const initialState: Item = {data: [], loading: false};
 
-const Item = (state: Item[] = item, action): Item[] => {
+const Item = (state: Item = initialState, action): Item => {
     switch (action.type) {
         case 'ADD':
-            return [...state, {
-                id: nanoid(),
-                name: action.payload.name,
-                categoryId: action.payload.categoryId !== "" ? action.payload.categoryId : null,
-                finalDate: action.payload.finalDate,
-                status: false
-            }];
+            return {...state, loading: true};
+        case 'ADD_SUCCESS':
+            return {...state, data: action.payload.data, loading: false}
         case 'CHANGE_STATUS':
-            return state.map((item: Item): Item => {
+            return {...state, loading: true} /*state.map((item: Item): Item => {
                 if (item.id === action.payload.id) {
                     const newStatus: boolean = !item.status;
                     return {
@@ -32,7 +31,7 @@ const Item = (state: Item[] = item, action): Item[] => {
                     };
                 }
                 return item;
-            });
+            });*/
         default:
             return state;
     }
