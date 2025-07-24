@@ -3,7 +3,7 @@ import {RootState} from "./redux/store";
 import Item from "./redux/Item";
 
 export default function ItemList() {
-    const tasks = useSelector((state: RootState) => [...state.item].sort((prev, next) => {
+    const tasks = useSelector((state: RootState) => state.item.sort((prev, next) => {
         if (!prev.status && next.status)
             return -1;
         if (prev.status && !next.status)
@@ -22,7 +22,7 @@ export default function ItemList() {
         return date.split('-').reverse().join('.');
     }
     let deleteClassName = false;
-    const categories = useSelector((state: RootState) => [...state.category]);
+    const categories = useSelector((state: RootState) => state.category.data);
     if (tasks.length > 0)
         return (
             <div className="task">

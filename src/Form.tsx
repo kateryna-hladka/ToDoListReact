@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {dateNow} from "./DateNow";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./redux/store";
@@ -10,6 +10,7 @@ export default function Form() {
         categoryId: "",
         finalDate: ""
     });
+
     const handleChange = (e): void => {
         const {name, value} = e.target;
         setFormData((prev) => ({
@@ -27,7 +28,10 @@ export default function Form() {
         }
     };
 
-    const categories = useSelector((state: RootState) => [...state.category]);
+    useEffect(() => {
+        dispatch({ type: "GET" });
+    }, [dispatch]);
+    const categories = useSelector((state: RootState) => state.category.data);
 
     return (
         <form className="create-item" onSubmit={handleSubmit}>
