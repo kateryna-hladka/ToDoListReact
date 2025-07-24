@@ -20,9 +20,9 @@ const Item = (state: Item = initialState, action): Item => {
         case 'CHANGE_STATUS':
         case 'ADD':
             return {...state, loading: true};
-        case 'ADD_SUCCESS':
         case 'GET_COMPLETED_ITEMS_SUCCESS':
             return {...state, completedItems: action.payload.data, loading: false}
+        case 'ADD_SUCCESS':
         case 'GET_NOT_COMPLETED_ITEMS_SUCCESS':
             return {...state, notCompletedItems: action.payload.data, loading: false}
 
