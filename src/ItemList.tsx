@@ -33,7 +33,7 @@ export default function ItemList() {
     const notCompletedItems = useSelector((state: RootState) => state.item.notCompletedItems);
     return (<>
             <ItemSection list={notCompletedItems}/>
-            <ItemSection list={completedItems}/>
+            <ItemSection list={completedItems} reverse={true}/>
         </>
     );
     /*if (notCompletedItems.length > 0)

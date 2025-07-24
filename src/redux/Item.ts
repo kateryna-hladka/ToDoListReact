@@ -20,6 +20,7 @@ const initialState: Item = {completedItems: [], notCompletedItems: [], loading: 
 const Item = (state: Item = initialState, action): Item => {
     switch (action.type) {
         case 'GET_ITEMS':
+        case 'CHANGE_STATUS':
         case 'ADD':
             return {...state, loading: true};
         case 'ADD_SUCCESS':
@@ -28,8 +29,21 @@ const Item = (state: Item = initialState, action): Item => {
         case 'GET_NOT_COMPLETED_ITEMS_SUCCESS':
             return {...state, notCompletedItems: action.payload.data, loading: false}
 
-        case 'CHANGE_STATUS':
-            return {...state, loading: true}
+        case 'CHANGE_STATUS_SUCCESS':
+            const updatedItem = action.payload.data;
+            const newCompleted = updatedItem.status
+                ? [...state.completedItems, updatedItem]
+                : state.completedItems.filter(item => item.id !== updatedItem.id);
+            const newNotCompleted = !updatedItem.status
+                ? [...state.notCompletedItems, updatedItem]
+                : state.notCompletedItems.filter(item => item.id !== updatedItem.id);
+            return {
+                ...state,
+                loading: false,
+                completedItems: newCompleted,
+                notCompletedItems: newNotCompleted
+            };
+        /*    return {...state, loading: false}*/
 
         /*state.map((item: Item): Item => {
                 if (item.id === action.payload.id) {
