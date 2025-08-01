@@ -1,6 +1,6 @@
 import {ofType} from "redux-observable";
 import {switchMap, map} from "rxjs/operators";
-import fetchWrapper from "./fetchWrapper";
+import fetchWrapper from "../fetchWrapper";
 
 const categoryEpic = action$ => action$.pipe(
     ofType("GET"),

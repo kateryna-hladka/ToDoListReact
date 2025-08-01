@@ -1,11 +1,11 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import Item from "./Item";
-import Category from "./Category";
+import Item from "./item/Item";
+import Category from "./category/Category";
 import {combineEpics, createEpicMiddleware} from 'redux-observable';
-import categoryEpic from "../epics/categoryEpic";
-import addItemEpic from "../epics/addItemEpic";
-import itemListEpic from "../epics/itemListEpic";
-import updateItemEpic from "../epics/updateItemEpic";
+import categoryEpic from "./category/categoryEpic";
+import addItemEpic from "./item/addItemEpic";
+import itemListEpic from "./item/itemListEpic";
+import updateItemEpic from "./item/updateItemEpic";
 
 const epicMiddleware = createEpicMiddleware();
 const rootReducer = combineReducers({

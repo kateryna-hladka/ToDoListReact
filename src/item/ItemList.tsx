@@ -1,5 +1,5 @@
 import {useSelector, useDispatch} from 'react-redux';
-import {RootState} from "./redux/store";
+import {RootState} from "../store";
 import {useEffect} from "react";
 import ItemSection from "./ItemSection";
 

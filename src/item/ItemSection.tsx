@@ -1,4 +1,4 @@
-import {ItemDate} from "./redux/Item";
+import {ItemDate} from "./Item";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 

@@ -1,6 +1,6 @@
 import {ofType} from "redux-observable";
 import {switchMap, mergeMap} from "rxjs/operators";
-import fetchWrapper from "./fetchWrapper";
+import fetchWrapper from "../fetchWrapper";
 
 const addItemEpic = action$ => action$.pipe(
         ofType("ADD"),

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {dateNow} from "./DateNow";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "./redux/store";
+import {RootState} from "./store";
 
 export default function Form() {
     const dispatch = useDispatch();
